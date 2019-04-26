@@ -1,0 +1,67 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.github.ben-manes:gradle-versions-plugin:0.17.0'
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.0'
+        classpath 'com.btkelly:gnag:2.0.0'
+    }
+}
+
+apply plugin: 'com.android.library'
+apply plugin: 'com.github.ben-manes.versions'
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'gnag'
+
+android {
+    compileSdkVersion 28
+
+
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    def supportLibraryVersion = '28.0.0'
+    def seismicVersion = '1.0.2'
+
+    api "com.squareup:seismic:$seismicVersion"
+    implementation 'io.reactivex:rxandroid:1.2.1'
+    implementation 'io.reactivex:rxjava:1.3.4'
+
+    implementation('com.google.android.gms:play-services-maps:11.4.2') { ext.optional = true }
+    implementation("com.android.support:appcompat-v7:${supportLibraryVersion}") {
+        ext.optional = true
+    }
+    implementation 'com.android.support:design:28.0.0'
+    implementation 'ja.burhanrashid52:photoeditor:0.3.3'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    testImplementation 'org.mockito:mockito-core:2.13.0'
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+}
+
+//apply from: 'https://raw.githubusercontent.com/stkent/JCenter/master/bintray1.7.3.gradle'
+//apply from: 'https://raw.githubusercontent.com/stkent/JCenter/master/install1.5.gradle'

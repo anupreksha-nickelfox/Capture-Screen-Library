@@ -1,0 +1,17 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.android.capturescreenlibrary" >
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <application>
+        <activity android:name="com.android.capturescreenlibrary.EditActivity"></activity>
+
+        <provider
+            android:name="com.android.capturescreenlibrary.flow.email.screenshot.BugShakerFileProvider"
+            android:authorities="${applicationId}.bugshaker.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/library_file_paths" />
+        </provider>
+    </application>
+</manifest>
